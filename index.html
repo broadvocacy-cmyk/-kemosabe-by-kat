@@ -608,25 +608,7 @@ footer img{height:28px;opacity:0.6;vertical-align:middle;margin-right:12px;
     <div class="succ" id="succ">
       <span class="se">🗝</span>
       <h2>Order submitted!</h2>
-      <p>
-        Your order has been sent to Kat.<br><br>
-        <span style="font-size:13px;color:#6DC4BC;">
-          An email window just opened so Kat gets your full order details.<br>
-          If it did not open, email her directly at<br>
-          <strong style="color:var(--teal);">kemosabebykat@gmail.com</strong>
-        </span><br><br>
-        <a href="https://www.paypal.com/paypalme/kemosabebykat" target="_blank"
-           style="display:inline-block;margin-top:6px;padding:14px 32px;
-           background:#0070BA;color:#fff;border-radius:100px;
-           font-family:Syne,sans-serif;font-weight:800;font-size:16px;
-           text-decoration:none;box-shadow:0 0 24px rgba(0,112,186,0.4);">
-          💳 &nbsp;Pay Kat on PayPal
-        </a><br><br>
-        <span style="font-size:12px;color:#3A7A75;">
-          Once Kat confirms your order she starts your braid.<br>Ships in 5–7 days.
-        </span><br><br>
-        <em style="color:var(--muted);font-size:12px;">Kemosabe — trusted friend.</em>
-      </p>
+      <div id="succ-body"></div>
     </div>
   </div>
 </div>
@@ -883,6 +865,47 @@ Order placed via kemosabe-by-kat.netlify.app"
 
   // ── SHOW SUCCESS SCREEN ─────────────────────────────────────────────────
   document.getElementById("fc").style.display="none";
+
+  // Populate success screen based on order type
+  const succBody = document.getElementById("succ-body");
+  if (isFree) {
+    succBody.innerHTML = `
+      <p>
+        Kat received your order and will reach out soon to confirm!<br><br>
+        <span style="font-size:13px;color:#6DC4BC;">
+          An email window just opened with your full order details.<br>
+          If it did not open, email her directly at<br>
+          <strong style="color:var(--teal);">kemosabebykat@gmail.com</strong>
+        </span><br><br>
+        <span style="font-size:15px;font-weight:700;color:var(--teal);">No payment needed — this one's on us. 🤍</span><br><br>
+        <span style="font-size:12px;color:#3A7A75;">
+          Once Kat confirms she starts your braid.<br>Ships in 5–7 days.
+        </span><br><br>
+        <em style="color:var(--muted);font-size:12px;">Kemosabe — trusted friend.</em>
+      </p>`;
+  } else {
+    succBody.innerHTML = `
+      <p>
+        Your order has been sent to Kat.<br><br>
+        <span style="font-size:13px;color:#6DC4BC;">
+          An email window just opened so Kat gets your full order details.<br>
+          If it did not open, email her directly at<br>
+          <strong style="color:var(--teal);">kemosabebykat@gmail.com</strong>
+        </span><br><br>
+        <a href="https://www.paypal.com/paypalme/kemosabebykat" target="_blank"
+           style="display:inline-block;margin-top:6px;padding:14px 32px;
+           background:#0070BA;color:#fff;border-radius:100px;
+           font-family:Syne,sans-serif;font-weight:800;font-size:16px;
+           text-decoration:none;box-shadow:0 0 24px rgba(0,112,186,0.4);">
+          💳 &nbsp;Pay Kat on PayPal
+        </a><br><br>
+        <span style="font-size:12px;color:#3A7A75;">
+          Once Kat confirms your order she starts your braid.<br>Ships in 5–7 days.
+        </span><br><br>
+        <em style="color:var(--muted);font-size:12px;">Kemosabe — trusted friend.</em>
+      </p>`;
+  }
+
   const s=document.getElementById("succ");s.classList.add("show");
   s.scrollIntoView({behavior:"smooth",block:"center"});
 
